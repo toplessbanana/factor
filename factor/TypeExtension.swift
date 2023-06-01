@@ -20,9 +20,9 @@ extension Int {
 
     // - MARK: Functions
     
-    /// Returns the common factors between `self` and `number`.
+    /// Returns a set containing the common factors between `self` and `number`.
     /// - Parameter number: The integer to operate.
-    /// - Returns: The common factors between `self` and `number`.
+    /// - Returns: The set containing the common factors between `self` and `number`.
     public func commonFactors(with number: Int) -> Set<Int> {
         return Set(self.factors).intersection(Set(number.factors))
     }
