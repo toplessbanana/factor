@@ -14,25 +14,17 @@ struct Factor: ParsableCommand {
     
     static var configuration = CommandConfiguration(
         abstract: "Print the factors of one or more integers.",
-        version: "2.0")
+        version: "2.1")
     
     @Argument(
         help: "The integers to factorise.")
     var integers: [Int] = []
     
-    @Flag(
-        name: .customLong("lcm"),
-        help: "Print the least common multiple.")
-    var leastCommonMultiple = false
-    
     // - MARK: Program
     
     mutating func run() {
-        if leastCommonMultiple {
-            getLeastCommonMultiple(of: Set(integers))
-        } else {
-            getFactors(of: Set(integers))
-        }
+        getFactors(of: Set(integers))
+        getLeastCommonMultiple(of: Set(integers))
     }
 }
 
@@ -52,5 +44,5 @@ func getLeastCommonMultiple(of numbers: Set<Int>) {
     guard let first = numbers.first else {
         return
     }
-    print(numbers.dropFirst().reduce(first) { $0.leastCommonMultiple(with: $1) })
+    print("lcm", numbers.dropFirst().reduce(first) { $0.leastCommonMultiple(with: $1) })
 }
